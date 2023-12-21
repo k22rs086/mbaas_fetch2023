@@ -15,60 +15,62 @@
         // 利用するデータベースを指定（存在しなければ生成）
         let TestClass = ncmb.DataStore("FetchTest");
 
-        function register() {
+        function plus() {
             // 登録するレコードを用意
             let testRecord = new TestClass();
-            let key = "text";
-            let value = $("#value").val();
-            // レコードのフィールドと値を設定
-            testRecord.set(key, value);
-            // レコードをデータベースに登録
+            let key = "Number";
+            let num1 = $("#num1").val();
+            let num2 = $("#num2").val();
+            let sum =parseInt(num1) + parseInt(num2);
+            $("#message").html(sum);
+            
+/*
+            //レコードをデータベースに登録
             testRecord.save()
                 .then(function(m) {
-                    $("#message").html("New object created with objectId: " + testRecord.objectId);
+                    $("#message").html(sum);
                 })
                 .catch(function(err) {
                     $("#message").html("Failed to create new object, with error code: " + JSON.stringify(err));
                 })
+                */
         }
 
-        function fetch(){
-            let TestClass = ncmb.DataStore("FetchTest");
-            TestClass.fetch().then(function(results){
-                let data = results.get("text");
-                let update = results.get("updateDate");
-                $("#message").html(data + ":" + update);
-            })
+        function minus(){
+            let testRecord = new TestClass();
+            let key = "Number";
+            let num1 = $("#num1").val();
+            let num2 = $("#num2").val();
+            let minus =parseInt(num1) - parseInt(num2);
+            $("#message").html(minus);
         }
-
-            function fetchAll(){
-                let TestClass = ncmb.DataStore("FetchTest");
-                TestClass.fetchAll().then(function(results){
-                    let msg="";
-                    for(let i=0; i<results.length; i++){
-                        let data = results[i].get("text");
-                        let update = results[i].get("updateDate");
-                        msg += data + ":" + update + "<br>";
-                    }
-                    $("#message").html(msg);
-                })
+        
+        function multiplication(){
+            let testRecord = new TestClass();
+            let key = "Number";
+            let num1 = $("#num1").val();
+            let num2 = $("#num2").val();
+            let sum =parseInt(num1) * parseInt(num2);
+            $("#message").html(sum);
             }
 
     </script>
 </head>
 
 <body>
-    <h1>mBaaS fetch</h1>
+    <h1>電卓</h1>
     <div>
-        <label for="value">Value:</label>
-        <input id="value" type="text" value="Hello, mBaaS!">
+        <label for="num1">data1:</label>
+        <input id="num1" type="number">
+        <label for="num2">data2:</label>
+        <input id="num2" type="number">
     </div>
     <div id="button">
-        <button id="btnA" class="btn" onclick="register()">Register</button>
-        <button id="btnB" class="btn" onclick="fetch()">Fetch</button>
-        <button id="btnC" class="btn" onclick="fetchAll()">FetchAll</button>
+        <button id="btnA" class="btn" onclick="plus()">足し算</button>
+        <button id="btnB" class="btn" onclick="minus()">引き算</button>
+        <button id="btnC" class="btn" onclick="multiplication()">掛け算</button>
     </div>
-    <div id="message">message area</div>
+    <div id="message">計算結果</div>
 </body>
 
 </html>
