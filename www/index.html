@@ -53,6 +53,15 @@
             let sum =parseInt(num1) * parseInt(num2);
             $("#message").html(sum);
             }
+     
+        function division(){
+            let testRecord = new TestClass();
+            let key = "Number";
+            let num1 = $("#num1").val();
+            let num2 = $("#num2").val();
+            let sum =parseInt(num1) / parseInt(num2);
+            $("#message").html(sum);
+            }
 
     </script>
 </head>
@@ -69,6 +78,7 @@
         <button id="btnA" class="btn" onclick="plus()">足し算</button>
         <button id="btnB" class="btn" onclick="minus()">引き算</button>
         <button id="btnC" class="btn" onclick="multiplication()">掛け算</button>
+        <button id="btnD" class="btn" onclick="division()">割り算</button>
     </div>
     <div id="message">計算結果</div>
 </body>
