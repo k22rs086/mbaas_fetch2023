@@ -13,7 +13,7 @@
         // NCMB アクセスの準備
         let ncmb = new NCMB(appKey, clientKey);
         // 利用するデータベースを指定（存在しなければ生成）
-        let TestClass = ncmb.DataStore("FetchTest");
+        let TestClass = ncmb.DataStore("DENTAKU");
 
         function plus() {
             // 登録するレコードを用意
@@ -24,7 +24,11 @@
             let sum =parseInt(num1) + parseInt(num2);
             $("#message").html(sum);
             
-/*
+        
+            // レコードのフィールドと値を設定
+            testRecord.set("num1", num1);
+            testRecord.set("num2",num2);
+            testRecord.set("plus",sum);
             //レコードをデータベースに登録
             testRecord.save()
                 .then(function(m) {
@@ -33,8 +37,9 @@
                 .catch(function(err) {
                     $("#message").html("Failed to create new object, with error code: " + JSON.stringify(err));
                 })
-                */
+    
         }
+
 
         function minus(){
             let testRecord = new TestClass();
@@ -43,6 +48,21 @@
             let num2 = $("#num2").val();
             let minus =parseInt(num1) - parseInt(num2);
             $("#message").html(minus);
+
+            // レコードのフィールドと値を設定
+            testRecord.set("num1", num1);
+            testRecord.set("num2",num2);
+            testRecord.set("minus",minus);
+            testRecord.set("plus",plus);
+            testRecord.set("division","non");
+            //レコードをデータベースに登録
+            testRecord.save()
+                .then(function(m) {
+                    $("#message").html(minus);
+                })
+                .catch(function(err) {
+                    $("#message").html("Failed to create new object, with error code: " + JSON.stringify(err));
+                })
         }
         
         function multiplication(){
@@ -50,8 +70,23 @@
             let key = "Number";
             let num1 = $("#num1").val();
             let num2 = $("#num2").val();
-            let sum =parseInt(num1) * parseInt(num2);
-            $("#message").html(sum);
+            let multiplication =parseInt(num1) * parseInt(num2);
+            $("#message").html(multiplication);
+
+             // レコードのフィールドと値を設定
+            testRecord.set("num1", num1);
+            testRecord.set("num2",num2);
+            testRecord.set("multiplication",multiplication);
+            //レコードをデータベースに登録
+            testRecord.save()
+                .then(function(m) {
+                    $("#message").html(multiplication);
+                })
+                .catch(function(err) {
+                    $("#message").html("Failed to create new object, with error code: " + JSON.stringify(err));
+                })
+                
+
             }
      
         function division(){
@@ -59,10 +94,24 @@
             let key = "Number";
             let num1 = $("#num1").val();
             let num2 = $("#num2").val();
-            let sum =parseInt(num1) / parseInt(num2);
-            $("#message").html(sum);
-            }
+            let division =parseInt(num1) / parseInt(num2);
+            $("#message").html(division);
+            
+            // レコードのフィールドと値を設定
+            testRecord.set("num1", num1);
+            testRecord.set("num2",num2);
+            testRecord.set("division",division);
+            //レコードをデータベースに登録
+            testRecord.save()
+            .then(function(m) {
+                $("#message").html(division);
+                })
+            .catch(function(err) {
+                $("#message").html("Failed to create new object, with error code: " + JSON.stringify(err));
+            })
+        }
 
+        
     </script>
 </head>
 
